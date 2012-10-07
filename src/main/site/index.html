@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Multimedia tagger</title>
+<link href="/css/loading.css" rel="stylesheet" type="text/css" />
+<link href="/jquery/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css" />;
+<link href="/jquery/css/demo_page.css" rel="stylesheet" type="text/css" />
+<link href="/jquery/css/demo_table_jui.css" rel="stylesheet" type="text/css" />
+<link href="/css/openlayers.css" rel="stylesheet" type="text/css" />
+<link href="/jquery/context/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+<link href="/jquery/cluetip/css/jquery.cluetip.css" rel="stylesheet" type="text/css" />
+<link href="/css/geotaggar.css" rel="stylesheet" type="text/css" />
+<link href="/css/jui.combobox.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div id="loading-mask"></div>
+    <div id="loading">
+        <div class="loading-indicator">
+            Loading...
+        </div>
+    </div>
+    <noscript><p>JavaScript must be enabled to use this page</p></noscript>
+    <div id="container" class="container clearfix hidden">
+        <div class="topleft">
+            <div class="logo" title="About Tagger" rel="/docs/about.html">
+                <h1>Multimedia tagger - Add and remove metadata and add geotag coordinates in uploaded multimedia files.</h1>
+            </div>
+        </div>
+            <div class="topright">
+                <div class="onetop">
+                    <div class="title clearfix">
+                        <div class="number"><img src="images/one.png" width="24" height="24" alt="1" /></div>
+                        <div class="upload"><h2>UPLOAD YOUR <span id="upload" style="color:red">MEDIA</span></h2></div>
+                        <div id="help1" class="helpbtn"><img src="images/help-orb.png" width="20" height="20" alt="help" /></div>
+                    </div>
+                </div>
+    <div class="middle">
+        <div class="browse">
+            <form id="uploadForm" action="/ws/uploadFile" method="post" enctype="multipart/form-data">
+                <input type="file" name="fileInput" id="fileInput"  size="14" /><br />
+<!--            <a class="br" href="#">BROWSE</a><br />-->
+                <br />
+                <span class="tandc">Choose or enter a license.</span><br />
+                <input id=license_other type=hidden name=license_other> 
+                <select id="license_sel" name="license_sel">
+                        <option value="Default">Use existing or default to CC-ZERO</option>
+                        <option value="Zero">CC Zero</option>
+                        <option value="CC-BY">CC-BY</option>
+                        <option value="CC-SA">CC-SA</option>
+                        <option value="BY-NC-CA">BY-NC-CA</option>
+                        <option value="BY-NC-DC">BY-NC-DC</option>
+                        <option value="DC-PDDL">DC-PDDL</option>
+                        <option value="UK OGL">UK OGL</option>
+                <select>
+                <br />
+                <input id="agreep" name="agreep" type="checkbox" value="" checked="true" />
+                <span class="tandc"><a href='javascript:alert("placeholder for yout T/Cs");' >I agree to the terms &amp; conditions</a></span><br />
+                <div class="buttonright">
+                    <button type="submit" id="upload_btn" class="clickable">
+<!--                <img src="images/upload-btn.png" alt="upload" width="88" height="32" border="0" />-->
+                    </button>
+                </div>
+            </form>
+            <div class="clear"></div>
+            <span class="red" id="perror" >No messages</span></div>
+            <div class="preview">
+                <div class="whiteborder">
+                    <div id="thumbnail" alt="preview"></div>
+                    <!--<img src="images/preview.png" width="137" height="110" alt="preview" />-->
+                </div> 
+                <span class="tandc">Preview</span>
+             </div>
+             <a id="permalink">permalink</a>
+             <div class="clear"></div>
+        </div>
+        <div class="bottomall"></div></div><div class="clear"></div><div class="bottomleft"><div class="twotop">
+        <div class="title clearfix">
+            <div class="number"><img src="images/two.png" width="24" height="24" alt="2" /></div><div class="upload"><h2>VIEW AND EDIT TAGS</h2></div>
+                        <div id="help2" class="helpbtn"><img src="images/help-orb.png" width="20" height="20" alt="help" /></div>
+        </div>
+    </div>
+    <div class="middle2">
+        <div class="tagsplaceholder">
+            <!--<img src="images/tags-placeholder.png" width="487" height="423" alt="placeholderforcontent" />-->
+              <div id="tabs">
+                <ul>
+                    <li><a href="#tabs-all">ALL</a></li>
+                    <li><a href="#tabs-exif">EXIF</a></li>
+                    <li><a href="#tabs-xmp">XMP</a></li>
+                    <li><a href="#tabs-iptc">IPTC</a></li>
+                    <li><a href="#tabs-custom">Custom</a></li>
+                </ul>
+                <div id="props">
+                    <div id="tabs-all">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="mediaProps"></table> 
+                    </div>
+                    <div id="tabs-exif">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="mediaPropsEXIF"></table>                    
+                    </div>
+                    <div id="tabs-iptc">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="mediaPropsIPTC"></table>
+                    </div>
+                    <div id="tabs-xmp">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="mediaPropsXMP"></table>
+                    </div>
+                    <div id="tabs-custom">
+                        <table cellpadding="0" cellspacing="0" border="0" class="display" id="mediaPropsCustom"></table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="mapholder">
+        <div class="abovemap">
+<!--            <div class="find"><img src="images/find.png" alt="find" width="88" height="32" border="0" /></div>-->
+            <div class="location">
+                    <label for="textfield"><span class="tandc"><strong>Find Location </strong>[update EXIF tags]</span><br/></label>
+                    <input type="text" name="unlockAutoComplete" id="unlockAutoComplete" />
+            </div>
+        </div>
+        <div id="map" alt="map"></div>
+    </div>
+    <div class="clear"></div>
+        <div id="save" class="btn clickable"><img src="images/save.png" alt="save" width="88" height="32" border="0" /></div>
+        <div id="export" class="btn clickable"><img src="images/export.png" alt="export" width="88" height="32" border="0" /></div>
+        <div id="download" class="btn clickable"><img src="images/download.png" alt="download" width="116" height="32" border="0" /></div>
+        <div id="anonymise" class="btn clickable"><img src="images/anonymise.png" alt="anonymise" width="116" height="32" border="0" /></div>
+        <div id="dropbox" class="btn clickable"><img src="images/dropbox.png" alt="dropbox" width="116" height="32" border="0" /></div>
+    <div class="unlock"><img src="images/unlock.png" width="186" height="30" alt="powered by unlock" /></div>
+
+    <div class="clear"></div>
+    </div><div class="bottom2"></div></div>
+    </div>
+    <!-----POPUP DIALOGS----->
+        <div id="operation-dialog" class="dialogs" title="Save Metadata:">
+            <div id="od-contents"></div>
+        </div>
+        <div id="create-custom-dialog" class="dialogs" title="Create new Metadata">
+            <p class="validateTips">All form fields are required.</p>
+            <form>
+            <fieldset>
+                    <label class="block" for="name">Name</label>
+                    <input class="block" type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+                    <label class="block" for="value">Value</label>
+                    <input class="block" type="text" name="value" id="value" value="" class="text ui-widget-content ui-corner-all" />
+            </fieldset>
+            </form>
+        </div>
+        <div id="anonymise-dialog" class="dialogs" title="Anonymise Media">
+            <p class="validateTips">Choose between different anonymising methods</p>
+            <form>
+            <fieldset>
+                <br><label>Anonymising Method:</label>
+                    <select name="anomethod">
+                        <option value="expunge">Expunge</option>
+                        <option value="fuzzify">Fuzzify</option>
+                </select><br><br>
+                <div id="fuzzifyform">
+                    <label class="block" for="tolerance">Tolerance (km)</label>
+                    <input class="block" type="text" name="tolerance" id="tolerance" class="text ui-widget-content ui-corner-all" />
+                <div>
+            </fieldset>
+            </form>
+        </div>
+        <div id="gm-dialog" class="dialogs" title="Geograph Image">
+            <div id="gm-title"></div>
+            <a id="gm-link">
+                <div id="gm-thumbnail"></div>
+            </a>
+            <div id="gm-desc"></div>
+            <div id="gm-attribution"></div>
+        </div>
+        <div id="menus" class="dialogs">
+            <ul id="customMenu" class="contextMenu">
+                <li class="copy">
+                    <a href="#new">New</a>
+                </li>
+                <li class="delete">
+                    <a href="#delete">Delete</a>
+                </li>
+            </ul>
+            <ul id="mapMenu" class="contextMenu">
+                <li class="updatemarker">
+                    <a href="#updatemarker">Update Marker</a>
+                </li>
+                <li class="geograph separator">
+                    <a href="#geograph">Nearby Images</a>
+                </li>
+            </ul>
+        </div>
+    <!-- SCRIPTS -->
+    <script type="text/javascript" src="jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery.layout.min-1.2.0.js"></script>
+    <script type="text/javascript" src="jquery/jquery.form.js"></script>
+    <script type="text/javascript" src="jquery/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery.jeditable.mini.js"></script>
+    <script type="text/javascript" src="jquery/jquery.dataTables.editable.js"></script>
+    <script type="text/javascript" src="jquery/jquery.json-2.3.min.js"></script>
+    <script type="text/javascript" src="js/jquery.contextMenu-hacked.js"></script>
+    <script type="text/javascript" src="jquery/jquery-cookie/jquery.cookie.js"></script>
+    <script type="text/javascript" src="jquery/cluetip/js/jquery.cluetip.min.js"></script>
+    <script type="text/javascript" src="http://openlayers.org/api/2.11/OpenLayers.js"></script>
+    <script type="text/javascript">
+        // for IE
+        if (typeof console == "undefined") {this.console = {log: function() {}};}
+    </script>
+    <script type="text/javascript" src="js/jui.combobox.js"></script> 
+    <script type="text/javascript" src="js/gtrutils.js"></script> 
+    <script type="text/javascript" src="js/dialogs.js"></script>    
+    <script type="text/javascript" src="js/gtrdata.js"></script>
+    <script type="text/javascript" src="js/geograph.js"></script>    
+    <script type="text/javascript" src="js/gtrdropbox.js"></script>    
+    <script type="text/javascript" src="js/gtr.js"></script>
+</body>
+</html>

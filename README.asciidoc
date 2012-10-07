@@ -1,0 +1,11 @@
+As part of the UK vision for supporting open discovery principles in relation to education materials, JISC has sponsored a number of projects to assist in discovering and enriching existing resources. "Tagger" is one such project which has delivered three things: 
+
+ * A basic https://github.com/xmichael/tagger/blob/master/docs/Tagger_API_V1.5.pdf?raw=true[web service API] based around http://www.sno.phy.queensu.ca/~phil/exiftool/[ExifTool], suitable for 3rd party use to geo-tag/geo-code image, audio, and video metadata.
+ * A http://tagger.edina.ac.uk[demo web client] enabling user upload, metadata parsing (from resource) and metadata enrichment (map based geo-tagging/geo-coding);
+ * An Open metadata corpus of geo-tagged/geo-coded enriched records with a REST based query interface. Currently, this bootstrap corpus consists of approximately a quarter of a million creative commons licensed geotagged images mainly sourced from http://www.geograph.org.uk/[Geograph]. 
+
+Tagger supports the http://discovery.ac.uk/businesscase/principles/[open discovery metadata principles]. 
+
+Documentation is available at the https://github.com/xmichael/tagger/wiki[wiki]
+
+All Tagger-specific source code is licensed under the modified BSD license. See LICENSE for further details.

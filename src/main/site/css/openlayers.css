@@ -1,0 +1,49 @@
+.olControlPanPanel {
+  left: auto;
+  right: 50px;
+}
+
+.olControlOverviewMapElement {
+  background-color: #FFF;
+}
+
+.olControlPanZoomBar {
+  right: 50px;
+  left: auto !important;
+  cursor: pointer;
+}
+
+.olControlWMSGetFeatureInfoActive {
+  cursor: help;
+  /* Custom cursor - only works in non IE environments. */
+/*  cursor: url(../images/wand2.cur) 0 0, default;*/
+}
+
+/*.olControlZoomBoxActive {
+  cursor: crosshair;
+}*/
+
+.olControlScaleLine {
+  left: 10px;
+  bottom: 15px;
+  font-size: xx-small;
+}
+
+.olControlScaleLineTop {
+  border: solid 2px #000;
+  border-top: none;
+  text-align: center;
+}
+
+.olControlWMSGetFeatureInfoInactive,
+.olControlZoomBoxInactive {
+  cursor: default;
+}
+
+.olControlAttribution {
+    bottom: 0;
+    left: 3px;
+    position: absolute;
+    font-size: smaller;
+    z-index: 1001 !important;
+}

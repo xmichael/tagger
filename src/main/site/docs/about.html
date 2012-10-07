@@ -1,0 +1,30 @@
+<!-- 
+var local;
+
+$(".logo").mouseover(function() {
+    local = makeWindow("/docs/about.html","About Tagger", 500, 300, "bar");
+    $.data(this, 'dialog');
+}).mouseout(function(){
+    console.log("close");
+     $.data(this, 'dialog').dialog('close');
+    $("#bar").dialog("close");
+  });
+ -->
+<div style="font-size: xx-small;">
+As part of the UK vision for supporting open discovery principles in relation to education materials, <a href="jisc.ac.uk">JISC<a> has 
+sponsored a number of projects to assist in discovering and enriching existing resources. This site is the product of one such project 
+which has delivered three things:
+
+<ul>
+<li> A basic <a href="/docs/Tagger_API_V1.5.pdf">web service API</a> based around <a href="http://www.sno.phy.queensu.ca/~phil/exiftool/">ExifTool</a>, suitable for 3rd party use to geo-tag/geo-code
+        image, audio, and video metadata.
+
+<li> A demo web client (this site) enabling user upload, metadata parsing (from resource) and metadata
+        enrichment (map based geo-tagging/geo-coding);
+
+<li> An Open metadata corpus  of geo-tagged/geo-coded enriched records with a REST based query interface. 
+Currently, this bootstrap corpus consists of  approximately a quarter of a million creative commons licensed 
+geotagged images mainly sourced from <a href="http://www.geograph.org.uk/">Geograph</a>. 
+</ul>
+<p>Tagger supports the <a href='http://discovery.ac.uk/businesscase/principles/'>open discovery metadata principles</a> .
+<div>
